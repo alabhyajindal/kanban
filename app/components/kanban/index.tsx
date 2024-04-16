@@ -2,6 +2,7 @@ import { useLoaderData } from '@remix-run/react'
 import { useEffect, useState } from 'react'
 import { loader } from '~/routes/_index'
 import Column from './column'
+import { DragDropContext } from 'react-beautiful-dnd'
 
 export interface TaskProps {
   id: number
@@ -37,13 +38,17 @@ export default function Kanban() {
     getData()
   }, [])
 
-  console.log(done)
-
   return (
     <div className='bg-gray-200 flex-1'>
       <section className='mt-24 mx-4 flex justify-around'>
-        <Column title='To do' tasks={todo} />
-        <Column title='Done' tasks={done} />
+        <DragDropContext
+          onDragEnd={() => {
+            console.log('drag end')
+          }}
+        >
+          <Column title='To do' tasks={todo} />
+          <Column title='Done' tasks={done} />
+        </DragDropContext>
       </section>
     </div>
   )
