@@ -44,14 +44,16 @@ const SETTINGS_ITEM = {
 
 export default function Sidebar() {
   return (
-    <aside className='bg-white w-1/4 p-4 text-slate-600 flex flex-col justify-between my-2'>
+    <aside className='bg-white dark:bg-slate-800 w-1/4 p-4 text-slate-600 dark:text-slate-300 flex flex-col justify-between'>
       <section>
         <div className='flex items-center justify-between gap-2'>
           <div className='flex gap-2'>
-            <div className='h-6 w-6 bg-black rounded-sm'></div>
-            <h2 className='font-medium text-sm text-slate-900'>Company</h2>
+            <div className='h-6 w-6 bg-black dark:bg-slate-200 rounded-sm'></div>
+            <h2 className='font-medium text-sm text-slate-900 dark:text-slate-100'>
+              Company
+            </h2>
           </div>
-          <ChevronDownIcon className='h-4 w-4 text-slate-600' />
+          <ChevronDownIcon className='h-4 w-4 text-slate-600 dark:text-slate-400' />
         </div>
         <section className='mt-8'>
           {ITEMS.map((item, i) => (
@@ -62,7 +64,7 @@ export default function Sidebar() {
         </section>
       </section>
 
-      <div className='-mb-4'>
+      <div>
         <ListItem item={SETTINGS_ITEM} />
       </div>
     </aside>

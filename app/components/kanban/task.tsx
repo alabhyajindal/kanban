@@ -13,12 +13,12 @@ export default function Task({
       <Draggable index={index} draggableId={task.id.toString()}>
         {(provided) => (
           <div
-            className='bg-white rounded-md p-4 mt-4 border border-gray-300'
+            className='bg-white dark:bg-slate-800 rounded-md p-4 mt-4 border border-gray-300 dark:border-gray-700'
             ref={provided.innerRef}
             {...provided.dragHandleProps}
             {...provided.draggableProps}
           >
-            <p>{task.todo}</p>
+            <p className='text-gray-800 dark:text-gray-300'>{task.todo}</p>
           </div>
         )}
       </Draggable>

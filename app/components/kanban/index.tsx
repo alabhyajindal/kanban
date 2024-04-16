@@ -40,9 +40,7 @@ export default function Kanban() {
 
   function handleDragEnd(result: DropResult) {
     const { source, destination } = result
-    if (!destination) {
-      return
-    }
+    if (!destination) return
 
     if (
       destination.droppableId === source.droppableId &&
@@ -60,11 +58,8 @@ export default function Kanban() {
       const [removed] = newTasks.splice(source.index, 1)
       newTasks.splice(destination.index, 0, removed)
 
-      if (source.droppableId === 'To do') {
-        setTodo(newTasks)
-      } else {
-        setDone(newTasks)
-      }
+      if (sourceColumn === todo) setTodo(newTasks)
+      else setDone(newTasks)
     } else {
       // Moving from one list to another
       const startTasks = Array.from(sourceColumn)
@@ -76,7 +71,7 @@ export default function Kanban() {
         completed: destination.droppableId === 'Done',
       })
 
-      if (source.droppableId === 'To do') {
+      if (sourceColumn === todo) {
         setTodo(startTasks)
         setDone(finishTasks)
       } else {
@@ -87,7 +82,7 @@ export default function Kanban() {
   }
 
   return (
-    <div className='bg-gray-200 text-slate-900 flex-1'>
+    <div className='bg-gray-200 dark:bg-slate-700 text-slate-900 flex-1'>
       <section className='mt-16 mx-4 flex justify-around'>
         <DragDropContext onDragEnd={handleDragEnd}>
           <Column title='To do' tasks={todo} />

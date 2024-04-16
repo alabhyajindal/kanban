@@ -11,11 +11,13 @@ export default function Column({
 }) {
   return (
     <div>
-      <h2 className='uppercase text-gray-600 font-medium'>{title}</h2>
+      <h2 className='uppercase text-gray-600 dark:text-gray-300 font-medium'>
+        {title}
+      </h2>
       <Droppable droppableId={title}>
         {(provided) => (
           <div
-            className='w-96 min-h-96 mt-6'
+            className='w-96 min-h-96 mt-6 p-2 rounded-md'
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
