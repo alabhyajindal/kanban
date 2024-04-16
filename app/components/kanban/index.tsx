@@ -2,7 +2,7 @@ import { useLoaderData } from '@remix-run/react'
 import { useEffect, useState } from 'react'
 import { loader } from '~/routes/_index'
 import Column from './column'
-import { DragDropContext } from 'react-beautiful-dnd'
+import { DragDropContext } from '@hello-pangea/dnd'
 
 export interface TaskProps {
   id: number
