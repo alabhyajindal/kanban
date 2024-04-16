@@ -1,0 +1,37 @@
+{
+  "todos": [
+    {
+      "id": 17,
+      "todo": "Create a cookbook with favorite recipes",
+      "completed": false,
+      "userId": 1
+    },
+    {
+      "id": 18,
+      "todo": "Bake a pie with some friends",
+      "completed": false,
+      "userId": 1
+    },
+    {
+      "id": 54,
+      "todo": "Start a daily journal",
+      "completed": false,
+      "userId": 1
+    },
+    {
+      "id": 100,
+      "todo": "Learn a new programming language",
+      "completed": true,
+      "userId": 1
+    },
+    {
+      "id": 141,
+      "todo": "Visit a nearby museum",
+      "completed": true,
+      "userId": 1
+    }
+  ],
+  "total": 5,
+  "skip": 0,
+  "limit": 5
+}
