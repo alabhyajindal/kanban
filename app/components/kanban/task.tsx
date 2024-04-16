@@ -1,6 +1,6 @@
-import { Task } from './column'
+import { TaskProps } from '.'
 
-export default function Task({ task }: { task: Task }) {
+export default function Task({ task }: { task: TaskProps }) {
   return (
     <div>
       <p>{task.todo}</p>

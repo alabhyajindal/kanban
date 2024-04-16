@@ -3,9 +3,24 @@ import { useEffect, useState } from 'react'
 import { loader } from '~/routes/_index'
 import Column from './column'
 
+export interface TaskProps {
+  id: number
+  todo: string
+  completed: boolean
+  userId: number
+}
+
+interface DataProps {
+  todos: TaskProps[]
+  total: number
+  skip: number
+  limit: number
+}
+
 export default function Kanban() {
-  // const data = useLoaderData<typeof loader>()
+  // const data: DataProps = useLoaderData<typeof loader>()
   // console.log(data)
+
   const [data, setData] = useState()
   const [done, setDone] = useState(null)
   const [todo, setTodo] = useState(null)

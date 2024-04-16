@@ -1,17 +1,11 @@
+import { TaskProps } from '.'
 import Task from './task'
-
-export interface Task {
-  id: number
-  todo: string
-  completed: boolean
-  userId: number
-}
 
 export default function Column({
   tasks,
   title,
 }: {
-  tasks: Task[]
+  tasks: TaskProps[]
   title: string
 }) {
   return (
