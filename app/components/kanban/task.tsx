@@ -13,6 +13,7 @@ export default function Task({
       <Draggable index={index} draggableId={task.id.toString()}>
         {(provided) => (
           <div
+            className='bg-white rounded-md p-4 mt-4 border border-gray-300'
             ref={provided.innerRef}
             {...provided.dragHandleProps}
             {...provided.draggableProps}

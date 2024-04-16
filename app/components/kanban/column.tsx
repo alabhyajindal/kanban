@@ -11,11 +11,15 @@ export default function Column({
 }) {
   return (
     <div>
+      <h2 className='uppercase text-gray-600 font-medium'>{title}</h2>
       <Droppable droppableId={title}>
         {(provided) => (
-          <div ref={provided.innerRef} {...provided.droppableProps}>
-            <h2 className='uppercase text-gray-600 font-medium'>{title}</h2>
-            <div className='mt-6'>
+          <div
+            className='w-96 min-h-96 mt-6'
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+          >
+            <div>
               {tasks?.map((task, index) => (
                 <div key={task.id}>
                   <Task task={task} index={index} />
