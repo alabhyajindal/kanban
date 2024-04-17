@@ -21,62 +21,11 @@ interface DataProps {
 }
 
 export default function Kanban() {
-  // const data: DataProps = useLoaderData<typeof loader>()
-  // console.log(data)
+  const init: DataProps = useLoaderData<typeof loader>()
 
-  const [data, setData] = useState()
+  const [data, setData] = useState(init)
   const [todo, setTodo] = useState<TaskProps[]>([])
   const [done, setDone] = useState<TaskProps[]>([])
-
-  function addMissingData(data) {
-    data.todos = data.todos.map((t) => ({
-      ...t,
-      dateCreated: '12th Jan',
-      author: 'Prahlad',
-      commentsCount: 3,
-    }))
-    // First
-    data.todos[0].author = 'Prahlad'
-    data.todos[0].tags = [
-      { title: 'Design', color: 'gray' },
-      { title: 'Development', color: 'green' },
-    ]
-    data.todos[0].links = ['docs.google.com', 'main.psd']
-    data.todos[0].cover = 'cake.jpg'
-    data.todos[0].body =
-      'Look up the chocolate cake recipe sent by Ankita and begin a draft.'
-    data.todos[0].commentProfiles = ['comment.jpg', 'comment-1.jpg']
-
-    // Second
-    data.todos[1].commentProfiles = ['comment.jpg']
-    data.todos[1].links = ['main.psd']
-
-    // Third
-    data.todos[2].commentProfiles = ['comment.jpg', 'comment-1.jpg']
-
-    // Fourth
-    data.todos[3].commentProfiles = ['comment-1.jpg']
-    data.todos[3].links = ['dribbble.com', 'main.psd']
-
-    // Fifth
-    data.todos[4].commentProfiles = ['comment.jpg', 'comment-1.jpg']
-
-    return data
-  }
-
-  useEffect(() => {
-    async function getData() {
-      const res = await fetch('data.json')
-      let data = await res.json()
-      data = addMissingData(data)
-      console.log(data)
-      setData(data)
-      setDone(data.todos.filter((d) => d.completed))
-      setTodo(data?.todos.filter((d) => !d.completed))
-    }
-
-    getData()
-  }, [])
 
   useEffect(() => {
     setDone(data?.todos.filter((d) => d.completed))
