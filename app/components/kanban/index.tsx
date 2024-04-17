@@ -43,14 +43,19 @@ export default function Kanban() {
     data.todos[0].cover = 'cake.jpg'
     data.todos[0].body =
       'Look up the chocolate cake recipe sent by Ankita and begin a draft.'
+    data.todos[0].commentProfiles = ['comment.jpg', 'comment-1.jpg']
 
     // Second
+    data.todos[1].commentProfiles = ['comment.jpg']
 
     // Third
+    data.todos[2].commentProfiles = ['comment.jpg', 'comment-1.jpg']
 
     // Fourth
+    data.todos[3].commentProfiles = ['comment-1.jpg']
 
     // Fifth
+    data.todos[4].commentProfiles = ['comment.jpg', 'comment-1.jpg']
 
     return data
   }

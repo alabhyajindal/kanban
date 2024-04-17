@@ -77,11 +77,26 @@ export default function Task({
                 </div>
               ) : null}
 
-              <div className='mt-6 text-gray-500 flex gap-1 items-center'>
-                <ChatBubbleOvalLeftEllipsisIcon className='h-4 w-4' />
-                <span className='text-xs font-medium'>
-                  {task.commentsCount}
-                </span>
+              <div className='mt-4 text-gray-500 flex justify-between items-center'>
+                <div className='flex gap-1'>
+                  <ChatBubbleOvalLeftEllipsisIcon className='h-4 w-4' />
+                  <span className='text-xs font-medium'>
+                    {task.commentsCount}
+                  </span>
+                </div>
+                {task.commentProfiles ? (
+                  <div className='flex gap-2'>
+                    {task.commentProfiles.map((c, i) => (
+                      <div key={i}>
+                        <img
+                          className='h-6 w-6 rounded-full'
+                          src={c}
+                          alt='Author profile'
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>
