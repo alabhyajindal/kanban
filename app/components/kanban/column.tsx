@@ -15,6 +15,7 @@ export default function Column({
   const [inputValue, setInputValue] = useState('')
 
   function handleTaskAdd() {
+    if (inputValue === '') return
     addTask(inputValue, false)
     setInputValue('')
   }
@@ -25,7 +26,7 @@ export default function Column({
 
   return (
     <div>
-      <h2 className='uppercase text-gray-600 dark:text-gray-300 font-medium'>
+      <h2 className='uppercase text-gray-600 dark:text-gray-300 font-semibold text-sm'>
         {title}
       </h2>
       <Droppable droppableId={title}>
