@@ -26,10 +26,38 @@ export default function Kanban() {
   const [todo, setTodo] = useState<TaskProps[]>([])
   const [done, setDone] = useState<TaskProps[]>([])
 
+  function addMissingData(data) {
+    data.todos = data.todos.map((t) => ({
+      ...t,
+      dateCreated: '12th Jan',
+      author: 'Prahlad',
+      commentsCount: 3,
+    }))
+    // First
+    data.todos[0].author = 'Prahlad'
+    data.todos[0].tags = ['Design', 'Development']
+    data.todos[0].links = ['docs.google.com', 'main.psd']
+    data.todos[0].cover = 'cake.jpg'
+    data.todos[0].body =
+      'Look up the chocolate cake recipe sent by Ankita and begin a draft.'
+
+    // Second
+
+    // Third
+
+    // Fourth
+
+    // Fifth
+
+    return data
+  }
+
   useEffect(() => {
     async function getData() {
       const res = await fetch('data.json')
-      const data = await res.json()
+      let data = await res.json()
+      data = addMissingData(data)
+      console.log(data)
       setData(data)
       setDone(data.todos.filter((d) => d.completed))
       setTodo(data?.todos.filter((d) => !d.completed))
