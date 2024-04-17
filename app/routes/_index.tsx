@@ -15,7 +15,7 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className='flex min-h-screen'>
+    <div className='flex max-h-screen overflow-hidden'>
       <Sidebar />
       <Kanban />
     </div>

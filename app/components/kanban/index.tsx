@@ -113,8 +113,8 @@ export default function Kanban() {
   }
 
   return (
-    <div className='bg-gray-200 dark:bg-slate-700 text-slate-900 flex-1'>
-      <section className='mt-8 mx-4 flex justify-around'>
+    <div className='bg-gray-200 dark:bg-slate-700 text-slate-900 flex-1 overflow-y-scroll'>
+      <section className='my-8 mx-4 flex justify-around'>
         <DragDropContext onDragEnd={handleDragEnd}>
           <Column title='To do' tasks={todo} />
           <Column title='Done' tasks={done} />
