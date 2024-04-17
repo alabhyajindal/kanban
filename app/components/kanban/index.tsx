@@ -1,23 +1,20 @@
 import { useLoaderData } from '@remix-run/react'
 import { useEffect, useState } from 'react'
-import { loader } from '~/routes/_index'
+import { DataProps, TaskProps, loader } from '~/routes/_index'
 import Column from './column'
 import { DragDropContext, DropResult } from '@hello-pangea/dnd'
-import { c } from 'node_modules/vite/dist/node/types.d-aGj9QkWt'
 import { nanoid } from 'nanoid'
 
-export interface TaskProps {
-  id: number
-  todo: string
-  completed: boolean
-  userId: number
+interface UpdateTaskProp {
+  (task: TaskProps): Promise<void>
 }
 
-interface DataProps {
-  todos: TaskProps[]
-  total: number
-  skip: number
-  limit: number
+export interface AddTaskProp {
+  (todo: string, completed: boolean): Promise<void>
+}
+
+export interface DeleteTaskProp {
+  (task: TaskProps): Promise<void>
 }
 
 export default function Kanban() {
@@ -84,8 +81,11 @@ export default function Kanban() {
     }
   }
 
-  async function updateTask(task: TaskProps) {
-    // Using static id because newly added todos are not persisted
+  /**
+   * Update a task
+   * Uses static id for the request because user created todos are not persisted and updating them will fail the request
+   */
+  const updateTask: UpdateTaskProp = async (task) => {
     const res = await fetch('https://dummyjson.com/todos/1', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -97,7 +97,10 @@ export default function Kanban() {
     console.log(data)
   }
 
-  async function addTask(todo: string, completed: boolean) {
+  /**
+   * Addd a task
+   */
+  const addTask: AddTaskProp = async (todo, completed) => {
     const res = await fetch('https://dummyjson.com/todos/add', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -109,14 +112,22 @@ export default function Kanban() {
     })
     const result = await res.json()
     if (result) {
-      const newTodo = { ...result, id: nanoid() }
+      const newTodo = {
+        ...result,
+        id: nanoid(),
+        author: 'Alabhya',
+        dateCreated: '18 Apr',
+      }
       const todos = [newTodo, ...data.todos]
       setData((d) => ({ ...d, todos }))
     }
   }
 
-  async function deleteTask(task: TaskProps) {
-    // Using static id for deletion because newly added todos are not persisted
+  /**
+   * Delete a task
+   * Uses static id for the request because user created todos are not persisted and deleting them will fail the request
+   */
+  const deleteTask: DeleteTaskProp = async (task) => {
     const res = await fetch(`https://dummyjson.com/todos/1`, {
       method: 'DELETE',
     })

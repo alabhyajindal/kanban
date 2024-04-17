@@ -1,10 +1,11 @@
 import { Draggable } from '@hello-pangea/dnd'
-import { TaskProps } from '.'
+import { DeleteTaskProp } from '.'
 import {
   ChatBubbleOvalLeftEllipsisIcon,
   LinkIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
+import { TaskProps } from '~/routes/_index'
 
 export default function Task({
   task,
@@ -13,6 +14,7 @@ export default function Task({
 }: {
   task: TaskProps
   index: number
+  deleteTask: DeleteTaskProp
 }) {
   return (
     <div>

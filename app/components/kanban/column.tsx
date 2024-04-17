@@ -1,7 +1,8 @@
 import { Droppable } from '@hello-pangea/dnd'
-import { TaskProps } from '.'
 import Task from './task'
-import { useState } from 'react'
+import { KeyboardEvent, useState } from 'react'
+import { TaskProps } from '~/routes/_index'
+import { AddTaskProp, DeleteTaskProp } from '.'
 
 export default function Column({
   tasks,
@@ -11,6 +12,8 @@ export default function Column({
 }: {
   tasks: TaskProps[]
   title: string
+  deleteTask: DeleteTaskProp
+  addTask: AddTaskProp
 }) {
   const [inputValue, setInputValue] = useState('')
 
@@ -20,7 +23,7 @@ export default function Column({
     setInputValue('')
   }
 
-  function handleKeyDown(e) {
+  function handleKeyDown(e: KeyboardEvent) {
     if (e.key == 'Enter') handleTaskAdd()
   }
 

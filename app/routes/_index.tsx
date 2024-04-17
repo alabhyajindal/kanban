@@ -7,7 +7,34 @@ export const meta: MetaFunction = () => {
   return [{ title: 'Kanban' }]
 }
 
-function modifyData(data) {
+export interface TagProps {
+  title: string
+  color: string
+}
+
+export interface TaskProps {
+  id: number
+  todo: string
+  completed: boolean
+  userId: number
+  author: string
+  tags: TagProps[]
+  links: string[]
+  cover: string
+  body: string
+  commentProfiles: string[]
+  dateCreated: string
+  commentsCount: number
+}
+
+export interface DataProps {
+  todos: TaskProps[]
+  total: number
+  skip: number
+  limit: number
+}
+
+function modifyData(data: DataProps) {
   data.todos = data.todos.map((t) => ({
     ...t,
     dateCreated: '12th Jan',
