@@ -36,30 +36,52 @@ export default function Task({
                 </span>
               </div>
 
-              <div className='text-gray-500 mt-6 text-sm'>
-                <p>{task.body}</p>
-                {task.cover ? (
-                  <img
-                    className='rounded-md h-24 w-full object-cover mt-4'
-                    src={task.cover}
-                    alt='Chocolate cake'
-                  />
-                ) : null}
-                <div className='flex gap-4 mt-4'>
-                  {task.links
-                    ? task.links.map((link, i) => (
-                        <div className='flex gap-2 items-center' key={i}>
-                          <LinkIcon className='h-4 w-4' />
-                          <p>{link}</p>
-                        </div>
-                      ))
-                    : null}
-                </div>
-              </div>
+              {task.body ? (
+                <p className='text-gray-500 mt-4 text-sm'>{task.body}</p>
+              ) : null}
 
-              <div className='mt-4 text-gray-500 flex gap-2 items-center'>
-                <ChatBubbleOvalLeftEllipsisIcon className='h-6 w-6' />
-                <span className='text-sm'>{task.commentsCount}</span>
+              {task.cover ? (
+                <img
+                  className='rounded-md h-24 w-full object-cover mt-4'
+                  src={task.cover}
+                  alt='Chocolate cake'
+                />
+              ) : null}
+
+              {task.links ? (
+                <div className='flex gap-4 mt-4 text-gray-500'>
+                  {task.links.map((link, i) => (
+                    <div className='flex gap-2 items-center text-sm' key={i}>
+                      <LinkIcon className='h-4 w-4' />
+                      <p>{link}</p>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+
+              {task.tags ? (
+                <div className='flex gap-4 mt-4'>
+                  {task.tags.map((tag, i) => (
+                    <div key={i}>
+                      <div
+                        className={`px-2 py-1 rounded-sm font-medium text-xs ${
+                          tag.color === 'gray'
+                            ? 'bg-gray-200 text-gray-700'
+                            : 'bg-green-200 text-green-700'
+                        }`}
+                      >
+                        {tag.title}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+
+              <div className='mt-6 text-gray-500 flex gap-1 items-center'>
+                <ChatBubbleOvalLeftEllipsisIcon className='h-4 w-4' />
+                <span className='text-xs font-medium'>
+                  {task.commentsCount}
+                </span>
               </div>
             </div>
           </div>

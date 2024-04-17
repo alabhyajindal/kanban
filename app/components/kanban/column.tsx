@@ -17,7 +17,7 @@ export default function Column({
       <Droppable droppableId={title}>
         {(provided) => (
           <div
-            className='w-96 min-h-96 mt-6 p-2 rounded-md'
+            className='w-96 min-h-96 mt-6 rounded-md'
             ref={provided.innerRef}
             {...provided.droppableProps}
           >

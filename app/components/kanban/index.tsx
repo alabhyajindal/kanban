@@ -35,7 +35,10 @@ export default function Kanban() {
     }))
     // First
     data.todos[0].author = 'Prahlad'
-    data.todos[0].tags = ['Design', 'Development']
+    data.todos[0].tags = [
+      { title: 'Design', color: 'gray' },
+      { title: 'Development', color: 'green' },
+    ]
     data.todos[0].links = ['docs.google.com', 'main.psd']
     data.todos[0].cover = 'cake.jpg'
     data.todos[0].body =
@@ -111,7 +114,7 @@ export default function Kanban() {
 
   return (
     <div className='bg-gray-200 dark:bg-slate-700 text-slate-900 flex-1'>
-      <section className='mt-16 mx-4 flex justify-around'>
+      <section className='mt-8 mx-4 flex justify-around'>
         <DragDropContext onDragEnd={handleDragEnd}>
           <Column title='To do' tasks={todo} />
           <Column title='Done' tasks={done} />
