@@ -26,19 +26,19 @@ export default function Task({
             {...provided.dragHandleProps}
             {...provided.draggableProps}
           >
-            <div>
+            <div className='text-gray-500 dark:text-gray-400'>
               <div className='flex justify-between items-center'>
-                <h3 className='text-gray-800 font-medium dark:text-gray-300'>
+                <h3 className='text-gray-800 font-medium dark:text-gray-100'>
                   {task.todo}
                 </h3>
                 <XMarkIcon
                   onClick={() => deleteTask(task)}
-                  className='h-4 w-4 text-gray-500 cursor-pointer hover:text-gray-900'
+                  className='h-5 w-5 cursor-pointer hover:text-black dark:hover:text-white'
                 />
               </div>
 
               {task.dateCreated && task.author ? (
-                <div className='flex gap-2 text-sm text-gray-500 mt-2'>
+                <div className='flex gap-2 text-sm mt-2'>
                   <span>{task.dateCreated}</span>
                   <span className='text-gray-400'>&bull;</span>
                   <span>
@@ -48,9 +48,7 @@ export default function Task({
                 </div>
               ) : null}
 
-              {task.body ? (
-                <p className='text-gray-500 mt-4 text-sm'>{task.body}</p>
-              ) : null}
+              {task.body ? <p className='mt-4 text-sm'>{task.body}</p> : null}
 
               {task.cover ? (
                 <img
@@ -61,7 +59,7 @@ export default function Task({
               ) : null}
 
               {task.links ? (
-                <div className='flex gap-4 mt-4 text-gray-500'>
+                <div className='flex gap-4 mt-4 '>
                   {task.links.map((link, i) => (
                     <div className='flex gap-2 items-center text-sm' key={i}>
                       <LinkIcon className='h-4 w-4' />
@@ -78,8 +76,8 @@ export default function Task({
                       <div
                         className={`px-2 py-1 rounded-sm font-medium text-xs ${
                           tag.color === 'gray'
-                            ? 'bg-gray-200 text-gray-700'
-                            : 'bg-green-200 text-green-700'
+                            ? 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+                            : 'bg-green-200 dark:bg-green-700 text-green-700 dark:text-green-200'
                         }`}
                       >
                         {tag.title}
@@ -90,7 +88,7 @@ export default function Task({
               ) : null}
 
               {task.commentProfiles && task.commentsCount ? (
-                <div className='mt-4 text-gray-500 flex justify-between items-center'>
+                <div className='mt-4 flex justify-between items-center'>
                   <div className='flex gap-1'>
                     <ChatBubbleOvalLeftEllipsisIcon className='h-4 w-4' />
                     <span className='text-xs font-medium'>

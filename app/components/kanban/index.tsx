@@ -10,7 +10,7 @@ interface UpdateTaskProp {
 }
 
 export interface AddTaskProp {
-  (todo: string, completed: boolean): Promise<void>
+  (todo: string): Promise<void>
 }
 
 export interface DeleteTaskProp {
@@ -29,6 +29,9 @@ export default function Kanban() {
     setTodo(data?.todos.filter((d) => !d.completed))
   }, [data])
 
+  /**
+   * Synchronous function to modify client side state for droppable items. Notice that the function which updates server state is called without the await keyword. See: https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/guides/responders.md#ondragend-required
+   */
   function handleDragEnd(result: DropResult) {
     const { source, destination } = result
     if (!destination) return
@@ -100,13 +103,13 @@ export default function Kanban() {
   /**
    * Addd a task
    */
-  const addTask: AddTaskProp = async (todo, completed) => {
+  const addTask: AddTaskProp = async (todo) => {
     const res = await fetch('https://dummyjson.com/todos/add', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         todo,
-        completed,
+        completed: false,
         userId: 22,
       }),
     })

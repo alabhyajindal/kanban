@@ -19,7 +19,7 @@ export default function Column({
 
   function handleTaskAdd() {
     if (inputValue === '') return
-    addTask(inputValue, false)
+    addTask(inputValue)
     setInputValue('')
   }
 
@@ -48,7 +48,7 @@ export default function Column({
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    className='flex-1 py-2 px-2 text-sm font-medium rounded-md border border-gray-300'
+                    className='flex-1 py-2 px-2 text-sm font-medium rounded-md border border-gray-300 dark:border-gray-600 focus:outline-none dark:placeholder:text-gray-300 dark:bg-slate-500 dark:text-white'
                     type='text'
                   />
                 </div>
