@@ -123,8 +123,26 @@ export default function Kanban() {
     }
   }
 
-  async function deleteTask(task) {
-    const res = await fetch(`https://dummyjson.com/todos/${task.id}`, {
+  async function addTask(todo: string, completed: boolean) {
+    const res = await fetch('https://dummyjson.com/todos/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        todo,
+        completed,
+        userId: 22,
+      }),
+    })
+    const result = await res.json()
+    if (result) {
+      const todos = [result, ...data.todos]
+      setData((d) => ({ ...d, todos }))
+    }
+  }
+
+  async function deleteTask(task: TaskProps) {
+    // Using static id for deletion because newly added todos are not inserted into db
+    const res = await fetch(`https://dummyjson.com/todos/1`, {
       method: 'DELETE',
     })
     const result = await res.json()
@@ -137,10 +155,20 @@ export default function Kanban() {
 
   return (
     <div className='bg-gray-200 dark:bg-slate-700 text-slate-900 flex-1 overflow-y-scroll'>
-      <section className='my-8 mx-4 flex justify-around'>
+      <section className='my-4 mx-4 flex justify-around'>
         <DragDropContext onDragEnd={handleDragEnd}>
-          <Column deleteTask={deleteTask} title='To do' tasks={todo} />
-          <Column deleteTask={deleteTask} title='Done' tasks={done} />
+          <Column
+            deleteTask={deleteTask}
+            addTask={addTask}
+            title='To do'
+            tasks={todo}
+          />
+          <Column
+            deleteTask={deleteTask}
+            addTask={addTask}
+            title='Done'
+            tasks={done}
+          />
         </DragDropContext>
       </section>
     </div>

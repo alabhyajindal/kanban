@@ -35,14 +35,16 @@ export default function Task({
                 />
               </div>
 
-              <div className='flex gap-2 text-sm text-gray-500 mt-2'>
-                <span>{task.dateCreated}</span>
-                <span className='text-gray-400'>&bull;</span>
-                <span>
-                  Created by{' '}
-                  <span className='font-semibold'>{task.author}</span>
-                </span>
-              </div>
+              {task.dateCreated && task.author ? (
+                <div className='flex gap-2 text-sm text-gray-500 mt-2'>
+                  <span>{task.dateCreated}</span>
+                  <span className='text-gray-400'>&bull;</span>
+                  <span>
+                    Created by{' '}
+                    <span className='font-semibold'>{task.author}</span>
+                  </span>
+                </div>
+              ) : null}
 
               {task.body ? (
                 <p className='text-gray-500 mt-4 text-sm'>{task.body}</p>
@@ -85,14 +87,14 @@ export default function Task({
                 </div>
               ) : null}
 
-              <div className='mt-4 text-gray-500 flex justify-between items-center'>
-                <div className='flex gap-1'>
-                  <ChatBubbleOvalLeftEllipsisIcon className='h-4 w-4' />
-                  <span className='text-xs font-medium'>
-                    {task.commentsCount}
-                  </span>
-                </div>
-                {task.commentProfiles ? (
+              {task.commentProfiles && task.commentsCount ? (
+                <div className='mt-4 text-gray-500 flex justify-between items-center'>
+                  <div className='flex gap-1'>
+                    <ChatBubbleOvalLeftEllipsisIcon className='h-4 w-4' />
+                    <span className='text-xs font-medium'>
+                      {task.commentsCount}
+                    </span>
+                  </div>
                   <div className='flex gap-2'>
                     {task.commentProfiles.map((c, i) => (
                       <div key={i}>
@@ -104,8 +106,8 @@ export default function Task({
                       </div>
                     ))}
                   </div>
-                ) : null}
-              </div>
+                </div>
+              ) : null}
             </div>
           </div>
         )}
