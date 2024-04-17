@@ -3,11 +3,13 @@ import { TaskProps } from '.'
 import {
   ChatBubbleOvalLeftEllipsisIcon,
   LinkIcon,
+  XMarkIcon,
 } from '@heroicons/react/24/outline'
 
 export default function Task({
   task,
   index,
+  deleteTask,
 }: {
   task: TaskProps
   index: number
@@ -23,9 +25,15 @@ export default function Task({
             {...provided.draggableProps}
           >
             <div>
-              <h3 className='text-gray-800 font-medium dark:text-gray-300'>
-                {task.todo}
-              </h3>
+              <div className='flex justify-between items-center'>
+                <h3 className='text-gray-800 font-medium dark:text-gray-300'>
+                  {task.todo}
+                </h3>
+                <XMarkIcon
+                  onClick={() => deleteTask(task)}
+                  className='h-4 w-4 text-gray-500 cursor-pointer hover:text-gray-900'
+                />
+              </div>
 
               <div className='flex gap-2 text-sm text-gray-500 mt-2'>
                 <span>{task.dateCreated}</span>

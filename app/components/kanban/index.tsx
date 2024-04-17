@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { loader } from '~/routes/_index'
 import Column from './column'
 import { DragDropContext, DropResult } from '@hello-pangea/dnd'
+import { c } from 'node_modules/vite/dist/node/types.d-aGj9QkWt'
 
 export interface TaskProps {
   id: number
@@ -74,6 +75,11 @@ export default function Kanban() {
     getData()
   }, [])
 
+  useEffect(() => {
+    setDone(data?.todos.filter((d) => d.completed))
+    setTodo(data?.todos.filter((d) => !d.completed))
+  }, [data])
+
   function handleDragEnd(result: DropResult) {
     const { source, destination } = result
     if (!destination) return
@@ -117,12 +123,24 @@ export default function Kanban() {
     }
   }
 
+  async function deleteTask(task) {
+    const res = await fetch(`https://dummyjson.com/todos/${task.id}`, {
+      method: 'DELETE',
+    })
+    const result = await res.json()
+    console.log(result)
+    if (result.isDeleted) {
+      const todos = data.todos.filter((d) => d.id !== task.id)
+      setData((d) => ({ ...d, todos }))
+    }
+  }
+
   return (
     <div className='bg-gray-200 dark:bg-slate-700 text-slate-900 flex-1 overflow-y-scroll'>
       <section className='my-8 mx-4 flex justify-around'>
         <DragDropContext onDragEnd={handleDragEnd}>
-          <Column title='To do' tasks={todo} />
-          <Column title='Done' tasks={done} />
+          <Column deleteTask={deleteTask} title='To do' tasks={todo} />
+          <Column deleteTask={deleteTask} title='Done' tasks={done} />
         </DragDropContext>
       </section>
     </div>

@@ -5,6 +5,7 @@ import Task from './task'
 export default function Column({
   tasks,
   title,
+  deleteTask,
 }: {
   tasks: TaskProps[]
   title: string
@@ -24,7 +25,7 @@ export default function Column({
             <div>
               {tasks?.map((task, index) => (
                 <div key={task.id}>
-                  <Task task={task} index={index} />
+                  <Task deleteTask={deleteTask} task={task} index={index} />
                 </div>
               ))}
               {provided.placeholder}
